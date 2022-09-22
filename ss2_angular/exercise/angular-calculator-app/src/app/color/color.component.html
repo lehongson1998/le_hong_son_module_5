@@ -1,0 +1,6 @@
+<p>color works!</p>
+
+<span [ngStyle]="{color: color.color}" class="fa-circle fa fa-5x bg-gradient"></span>
+<label>PICK COLOR</label>
+<input type="color" (input)="changeColor($event.target)" [value]="color.color">
+<div style="width: 100px; height: 100px" [ngStyle]="{backgroundColor: color.color}"></div>
