@@ -1,8 +1,19 @@
-<div class="container">
+<div class="container lon">
   <h2>Today's article</h2>
   <hr>
-  <div *ngFor="let art of articles">
-    <a href="{{art.url}}" target="_blank">{{art.title}}</a>: <app-like></app-like>
+  <div class="row">
+    <div class="col-md-7">
+      <div *ngFor="let art of articles">
+        <app-like></app-like>
+        <a class="ms-2 text-decoration-none text-success" href="{{art.url}}" target="_blank">{{art.title}}</a>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/vJGnx-IaQd0" title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
   </div>
   <hr>
   <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -13,7 +24,7 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-warning bg-gradient">
           <h5 class="modal-title" id="exampleModalLabel">ADD NEW ARTICLES</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -21,7 +32,7 @@
           <label for="title" class="form-label">Title</label>
           <textarea (change)="setTitle($event.target.value)" class="form-control" id="title"></textarea>
           <label for="url" class="form-label">Title</label>
-          <textarea [(ngModel)]="article.url" class="form-control" id="url"></textarea>
+          <textarea (change)="setUrl($event.target.value)" class="form-control" id="url"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -31,3 +42,4 @@
     </div>
   </div>
 </div>
+

@@ -42,4 +42,8 @@ export class ArticleComponent implements OnInit {
   setTitle(value: any) {
     this.article.title = value;
   }
+
+  setUrl(value: any) {
+    this.article.url = value;
+  }
 }
