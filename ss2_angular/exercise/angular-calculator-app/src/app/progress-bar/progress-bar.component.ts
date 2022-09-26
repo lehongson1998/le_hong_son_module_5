@@ -25,6 +25,6 @@ export class ProgressBarComponent implements OnInit {
         clearInterval(interval);
         alert("load xong");
       }
-    }, 200);
+    }, 300);
   }
 }
