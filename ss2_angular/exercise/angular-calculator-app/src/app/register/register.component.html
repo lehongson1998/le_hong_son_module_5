@@ -1,0 +1,77 @@
+
+<div class="col-md-3 offset-md-2 bg-light bg-gradient" style="margin: auto; border: 1px solid black;border-radius: 5px; font-family: Arial">
+  <h3 class="text-center text-light bg-primary pt-2 pb-2">REGISTER FORM</h3>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="m-2">
+      <label for="email" class="form-label text-secondary">Email</label>
+      <input type="text" class="form-control" name="email" id="email" formControlName="email">
+      <div *ngIf="!email.valid && (email.dirty || email.touched)" class="text-danger">
+        <div [hidden]="!email.errors.required">email is not valid</div>
+        <div [hidden]="!email.errors.email">input right format</div>
+      </div>
+    </div>
+
+    <div class="m-2">
+      <label for="password" class="form-label text-secondary">Password</label>
+      <input type="password" class="form-control" name="password" id="password" formControlName="password">
+      <div *ngIf="!password.valid && (password.dirty || password.touched)" class="text-danger">
+        <div [hidden]="!password.errors.required">password is not valid</div>
+        <div [hidden]="!password.errors.minLength">at least 6 characters</div>
+      </div>
+    </div>
+
+    <div class="m-2">
+      <label for="confirmPassword" class="form-label text-secondary">Confirm Password</label>
+      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword">
+      <div *ngIf="!confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)" class="text-danger">
+        <div [hidden]="!confirmPassword.errors.required">password is not valid</div>
+        <div [hidden]="!confirmPassword.errors.minLength">at least 6 characters</div>
+      </div>
+      <div *ngIf="registerForm.hasError('invalidPassword')" class="text-danger">password must match</div>
+    </div>
+
+    <div class="m-2">
+      <label class="form-label text-secondary" for="country">Country</label>
+      <select id="country" name="country" formControlName="country" class="form-control form-select">
+        <option disabled selected>choose country</option>
+        <ng-container *ngFor="let c of country">
+          <option [ngValue]="c">{{c.name}}</option>
+        </ng-container>
+      </select>
+      <div *ngIf="!countrys.valid && (countrys.dirty || countrys.touched)" class="text-danger">
+        <div [hidden]="!countrys.errors.required">country is not valid</div>
+      </div>
+    </div>
+
+    <div class="m-2">
+      <label for="age" class="form-label text-secondary">Age</label>
+      <input type="text" class="form-control" name="age" id="age" formControlName="age">
+      <div *ngIf="!age.valid && (age.dirty || age.touched)" class="text-danger">
+        <div [hidden]="!age.errors.required">age is not valid</div>
+        <div [hidden]="!age.errors.min">must be over 18 years old</div>
+      </div>
+    </div>
+
+    <div class="m-2">
+      <label class="form-label me-2 text-secondary">Gender</label>
+      <input type="radio" name="gender" formControlName="gender" value="Male" class="form-check-input me-3"><span class="fa fa-male text-danger me-2"></span>
+      <input type="radio" name="gender" formControlName="gender" value="Female" class="form-check-input me-3"><span class="fa fa-female text-success me-2"></span>
+      <div *ngIf="!gender.valid && (gender.dirty || gender.touched)" class="text-danger">
+        <div [hidden]="!gender.errors.required">gender is not valid</div>
+      </div>
+    </div>
+
+    <div class="m-2">
+      <label for="phone" class="form-label text-secondary">Phone</label>
+      <input type="text" class="form-control" name="phone" id="phone" formControlName="phone">
+      <div *ngIf="!phone.valid && (phone.dirty || phone.touched)" class="text-danger">
+        <div [hidden]="!phone.errors.required">phone number is not valid</div>
+        <div [hidden]="!phone.errors.pattern">starts with '+84' followed by 9-10 digits</div>
+      </div>
+    </div>
+
+    <div class="m-2">
+      <button type="submit" class="form-control btn-primary btn" [disabled]="!registerForm.valid">Submit</button>
+    </div>
+  </form>
+</div>
