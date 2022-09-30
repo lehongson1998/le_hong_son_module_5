@@ -1,0 +1,6 @@
+<div class="col-md-3" style="margin: auto">
+  <h4 class="text-center">dictionary-page works!</h4>
+  <ul *ngFor="let dic of wordPage">
+    <li><a [routerLink]="['dic/detail', dic.word]" >{{dic.word}}</a></li>
+  </ul>
+</div>

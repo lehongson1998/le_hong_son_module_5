@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginUser} from '../../model/loginUser';
-import {isFromDtsFile} from '@angular/compiler-cli/src/ngtsc/util/src/typescript';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginUser = new FormGroup({
     email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
-  }, [this.validateAcc]);
+  }, [this.validateAccount]);
 
   logUser: LoginUser[] = [
     {email: "lhongson2909@gmail.com", password: "Avaicalon123"},
@@ -24,25 +23,26 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.logUser)
   }
 
-  validateAcc(loginUser: AbstractControl){
-    let acc = loginUser.value.email;
-    let pass = loginUser.value.password;
-    let count = 0;
-    for (let i = 0; i < this.logUser.length; i++){
-      if (acc !== this.logUser[i].email && pass !== this.logUser[i].password){
-        count++;
-      }
-    }
-    if (count != 0){
-      return {"error": true}
+  validateAccount(loginUser: AbstractControl){
+    let userName = loginUser.value.email;
+    let password = loginUser.value.password;
+    if (userName !== password){
+      return {"valon": true}
     }
     return null;
   }
 
   onSubmit() {
     console.log(this.loginUser);
+  }
+
+  get email(){
+    return this.loginUser.get("email");
+  }
+
+  get password(){
+    return this.loginUser.get("password")
   }
 }
