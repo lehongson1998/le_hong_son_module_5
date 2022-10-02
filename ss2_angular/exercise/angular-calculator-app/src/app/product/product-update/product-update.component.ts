@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ProductService} from '../../service/product.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Product} from '../../model/product';
@@ -12,18 +12,14 @@ import {Product} from '../../model/product';
 export class ProductUpdateComponent implements OnInit {
   productForm: FormGroup;
   id: number;
+  product: Product = {};
 
   constructor(private productService: ProductService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
-      const product = this.getProduct(this.id);
-      this.productForm = new FormGroup({
-        id: new FormControl(product.id),
-        name: new FormControl(product.name),
-        price: new FormControl(product.price),
-        description: new FormControl(product.description),
-      });
+      this.getProduct(this.id);
     });
   }
 
@@ -31,14 +27,24 @@ export class ProductUpdateComponent implements OnInit {
   }
 
     getProduct(id: number) {
-      return this.productService.findById(id);
+      return this.productService.findById(id).subscribe(product => {
+        this.product = product;
+        this.productForm = new FormGroup({
+          id: new FormControl(product.id),
+          name: new FormControl(product.name),
+          price: new FormControl(product.price),
+          description: new FormControl(product.description),
+        });
+      })
     }
 
 
   updateProduct(id: number) {
     const product = this.productForm.value;
-    this.productService.updateProduct(id, product);
-    alert('Cập nhật thành công');
+    this.productService.updateProduct(id, product).subscribe(() => {
+      alert('Cập nhật thành công');
+      this.router.navigate([""]);
+    });
   }
 
 }

@@ -1,0 +1,59 @@
+{
+  "todo": [
+    {
+      "id": 1,
+      "content": "json-server",
+      "complete": true
+    },
+    {
+      "id": 2,
+      "content": "json-server 2",
+      "complete": true
+    },
+    {
+      "id": 3,
+      "content": "json-server 3",
+      "complete": true
+    },
+    {
+      "id": 4,
+      "content": "json-server 4",
+      "complete": true
+    },
+    {
+      "id": 5,
+      "content": "json-server 5",
+      "complete": true
+    },
+    {
+      "content": "rrerere",
+      "complete": false,
+      "id": 6
+    },
+    {
+      "content": "wde",
+      "complete": false,
+      "id": 7
+    }
+  ],
+  "products": [
+    {
+      "id": 2,
+      "name": "'IPhone 11'",
+      "price": 1560000,
+      "description": "Like new"
+    },
+    {
+      "id": 3,
+      "name": "IPhone X",
+      "price": 968000,
+      "description": "97%"
+    },
+    {
+      "id": 4,
+      "name": "IPhone 8",
+      "price": 7540000,
+      "description": "98%"
+    }
+  ]
+}

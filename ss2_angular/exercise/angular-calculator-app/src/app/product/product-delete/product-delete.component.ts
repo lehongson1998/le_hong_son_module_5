@@ -19,5 +19,4 @@ export class ProductDeleteComponent implements OnInit {
   getProduct(){
     this.product.emit(this.productDelete);
   }
-
 }

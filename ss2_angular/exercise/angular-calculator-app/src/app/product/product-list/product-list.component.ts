@@ -16,7 +16,9 @@ export class ProductListComponent implements OnInit {
   }
 
   getAll() {
-    this.products = this.productService.getAll();
+    return this.productService.getAll().subscribe(products => {
+      this.products = products;
+    })
   }
 
   product: Product = {}
@@ -26,6 +28,8 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(event: any) {
-    this.productService.deleteProduct(event);
+    this.productService.deleteProduct(event.id).subscribe(() => {
+       this.getAll();
+    });
   }
 }

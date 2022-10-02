@@ -8,6 +8,7 @@ import {ProductCreateComponent} from './product/product-create/product-create.co
 import {DictionaryPageComponent} from './dictionary-page/dictionary-page.component';
 import {DictionaryDetailComponent} from './dictionary-detail/dictionary-detail.component';
 import {ProductUpdateComponent} from './product/product-update/product-update.component';
+import {TodoComponent} from './todo/todo.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: "product/create", component: ProductCreateComponent},
   // {path: "", component: DictionaryPageComponent},
   {path: "dic/detail/:word", component: DictionaryDetailComponent},
-  {path: "product/edit/:id", component: ProductUpdateComponent}
+  {path: "product/edit/:id", component: ProductUpdateComponent},
+  {path: "todo", component: TodoComponent}
 ];
 
 @NgModule({
