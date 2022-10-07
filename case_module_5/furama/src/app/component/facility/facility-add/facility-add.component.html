@@ -1,0 +1,72 @@
+<div class="col-md-4 mt-2 p-2" style="border: 1px solid grey; border-radius: 3px; margin: auto">
+  <h3 align="center">THÊM MỚI DỊCH VỤ</h3>
+  <form class="row g-3" [formGroup]="facility" (ngSubmit)="saveFacility()">
+    <div formGroupName="facilityId" class="col-md-12">
+      <label class="form-label">Loại dịch vụ</label>
+      <select name="facilityId" class="form-select" formControlName="id">
+        <ng-container *ngFor="let type of facilityType">
+          <option [ngValue]="type.id">{{type.name}}</option>
+        </ng-container>
+      </select>
+    </div>
+
+    <div class="col-md-12">
+      <label for="name" class="form-label">Tên dịch vụ</label>
+      <input type="text" class="form-control" formControlName="name" id="name">
+    </div>
+
+    <div class="col-md-12">
+      <label for="area" class="form-label">Diện tích sử dụng</label>
+      <input type="text" class="form-control" id="area" formControlName="area">
+    </div>
+
+    <div class="col-md-12">
+      <label for="cost" class="form-label">Chi phí thuê</label>
+      <input type="text" class="form-control" id="cost" formControlName="cost">
+    </div>
+
+    <div class="col-md-12">
+      <label for="max_people" class="form-label">Số lượng người tối đa </label>
+      <input type="text" class="form-control" id="max_people" formControlName="maxPeople">
+    </div>
+
+    <div formGroupName="rentType" class="col-md-12">
+      <label  class="form-label">Kiểu thuê</label>
+      <select name="rentalType"  class="form-select" formControlName="id">
+        <option value="0" disabled selected>Chọn kiểu thuê</option>
+        <ng-container *ngFor="let rent of rentType">
+          <option [ngValue]="rent.id">{{rent.name}}</option>
+        </ng-container>
+      </select>
+    </div>
+
+    <div class="col-md-12 " id="s1">
+      <label for="standard_room" class="form-label">Tiêu chuẩn phòng </label>
+      <input type="text" class="form-control" id="standard_room" formControlName="standardRoom">
+    </div>
+
+    <div class="col-md-12 " id="s2">
+      <label for="description" class="form-label">Mô tả tiện nghi khác</label>
+      <input type="text" class="form-control" id="description" formControlName="descriptionOtherConvenience">
+    </div>
+
+    <div class="col-md-12 " id="s3">
+      <label for="pool_area" class="form-label">Diện tích hồ bơi  </label>
+      <input type="text" class="form-control" id="pool_area" formControlName="poolArea">
+    </div>
+
+    <div class="col-md-12" id="s4">
+      <label for="number_floors" class="form-label">Số tầng </label>
+      <input type="text" class="form-control" id="number_floors" formControlName="numberOfFloors">
+    </div>
+
+    <div class="col-md-12 " id="s5">
+      <label for="facility_free" class="form-label">Dịch vụ miễn phí đi kèm </label>
+      <input type="text" class="form-control" id="facility_free" formControlName="facilityFree">
+    </div>
+
+    <div class="col-12 ">
+      <button type="submit" class="btn btn-primary form-control">Gửi</button>
+    </div>
+  </form>
+</div>

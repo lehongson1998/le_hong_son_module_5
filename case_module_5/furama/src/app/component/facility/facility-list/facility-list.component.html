@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <h1 class="text-center" style="font-family: 'Bell MT'">DANH SÁCH DỊCH VỤ</h1>
+  <p class="text-center text-success" ></p>
+  <form class="d-flex m-5">
+    <input class="form-control me-2" type="search" placeholder="tìm theo tên dịch vụ" aria-label="Search"
+           name="name">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+  <table class="table">
+    <thead>
+    <tr class="table-success" style="font-family: 'Bell MT'">
+      <th>#</th>
+      <th>TÊN DỊCH VỤ</th>
+      <th>DIỆN TÍCH</th>
+      <th>GÍA THUÊ</th>
+      <th>SỐ NGƯỜI TỐI ĐA</th>
+      <th>KIỂU THUÊ</th>
+      <th>TIÊU CHUẨN PHÒNG</th>
+      <th>MÔ TẢ</th>
+      <th>DỊCH VỤ MIỄN PHÍ</th>
+      <th>SỐ TẦNG</th>
+      <th>DIỆN TÍCH HỒ BƠI</th>
+      <th class="text-center"><a href="/facility/formCreate"><span class="fa fa-plus-circle fa-2x text-info"></span></a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let facility of facilityList; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{facility.name}}</td>
+      <td>{{facility.area}}</td>
+      <td>{{facility.cost}}</td>
+      <td>{{facility.maxPeople}}</td>
+      <td>{{facility.rentType.name}}</td>
+      <td>{{facility.standardRoom}}</td>
+      <td>{{facility.descriptionOtherConvenience}}</td>
+      <td>{{facility.facilityFree}}</td>
+      <td>{{facility.numberOfFloors}}</td>
+      <td>{{facility.poolArea}}</td>
+      <td class="text-center">
+        <a class="text-decoration-none">
+          <span class="fa fa-edit fa-1x text-warning"></span>
+        </a>
+        <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <span class="fa fa fa-trash text-danger fa-1x"></span>
+        </button><div class="row text-center">
+      </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

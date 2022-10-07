@@ -1,0 +1,25 @@
+<p>calculator works!</p>
+
+<label class="form-label" for="a">
+  number A:
+  <input id="a" type="text" [(ngModel)]="numberA" class="form-control">
+</label>
+<label class="form-label" for="b">
+  number B:
+  <input id="b" type="text" [(ngModel)]="numberB">
+</label>
+<label class="form-label" for="o">
+  Operator:
+  <select [(ngModel)]="operator" id="o">
+    <option value="+" selected>+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+</label>
+<p class="text-success">
+  Result:{{calculate(numberA, numberB, operator)}}
+  <br>
+  number A: {{numberA}},
+  number A: {{numberB}}
+</p>

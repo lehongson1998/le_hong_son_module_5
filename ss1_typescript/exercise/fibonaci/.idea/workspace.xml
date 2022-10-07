@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d20aeb46-3a8f-408e-9be7-028f8a4c6266" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-control-flow-and-loop/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-control-flow-and-loop/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-control-flow-and-loop/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-control-flow-and-loop/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-control-flow-and-loop/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-control-flow-and-loop/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-is-prime/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-is-prime/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/iArea.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/iArea.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/retangle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/retangle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/shape.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-is-prime/src/shape.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-is-prime/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-is-prime/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-promise/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-promise/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-promise/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-promise/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-promise/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-promise/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-variable/ package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-variable/ package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-variable/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-variable/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pratice/typescript-variable/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../pratice/typescript-variable/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2F3qzwX3nyOZN6JXkOVu0I16qzW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ss2_angular/pratice" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="D:\module_5\ss1_typescript\exercise\fibonaci\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ts.external.directory.path" value="D:\module_5\ss1_typescript\exercise\fibonaci\node_modules\typescript\lib" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d20aeb46-3a8f-408e-9be7-028f8a4c6266" name="Default Changelist" comment="" />
+      <created>1663731380452</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663731380452</updated>
+      <workItem from="1663731381677" duration="1389000" />
+      <workItem from="1663734155895" duration="2371000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1663744846446">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1663744846446" />
+    <state x="277" y="53" key="SettingsEditor" timestamp="1663744728709">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="277" y="53" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1663744728709" />
+  </component>
+</project>

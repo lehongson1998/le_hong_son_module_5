@@ -1,0 +1,257 @@
+<div class="text-center" style="margin-top: 80px">
+  <h3 class="font-monospace text-danger">{{now.getHours()}}:{{now.getMinutes()}}:{{now.getSeconds()}}</h3>
+  <div class="text-white">{{now}}</div>
+</div>
+<div class="col-md-7 d-flex mt-3" style="margin: auto">
+  <input class="form-control me-2 mb-2" (input)="onSearch()" [(ngModel)]="name" name="name" placeholder="tìm theo tên">
+
+  <input class="form-control ms-2 mb-2" (input)="onSearch()" [(ngModel)]="typeBus" name="typeBus"
+         placeholder="tìm theo loại xe">
+</div>
+<div class="col-md-9 mb-5" style="margin: auto">
+  <table class="table table-success table-hover">
+    <thead>
+    <tr class="table-primary">
+      <th (click)="changeSort()"><a >Loại Xe</a></th>
+      <th>Tên Nhà Xe</th>
+      <th>Điểm đi</th>
+      <th>Điểm đến</th>
+      <th>Giờ đi</th>
+      <th>Giờ Đến</th>
+      <th>Số Điện Thoại</th>
+      <th>Email</th>
+      <th colspan="2"  class="text-center">
+        <button style="border-radius: 45%" type="button" class="btn btn-light border-0 text-success" (click)="getForm()" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+          <i class="fa fa-heart-circle-plus"></i>
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody class="shadow">
+    <tr *ngFor="let busHome of busPage; index as i">
+      <td>{{busHome.typeBus.name}}</td>
+      <td><a class="text-decoration-none" [routerLink]="['/detail/' + busHome.id]">{{busHome.name}}</a></td>
+      <td>{{busHome.goLocations.name}}</td>
+      <td>{{busHome.backLocations.name}}</td>
+      <td>{{busHome.startTime}}</td>
+      <td>{{busHome.endTime}}</td>
+      <td>{{busHome.phone}}</td>
+      <td>{{busHome.email}}</td>
+      <td class="text-center">
+        <button style="border-radius: 45%" type="button" class="btn btn-outline-light border-0" (click)="getFormEdit(busHome.id)" data-bs-toggle="modal"
+                data-bs-target="#edit">
+          <span class="fa fa-edit text-warning"></span>
+        </button>
+      </td>
+      <td class="text-center">
+        <button style="border-radius: 45%" type="button" class="btn btn-outline-light border-0" (click)="getDelete(busHome.id)" data-bs-toggle="modal"
+                data-bs-target="#deleteProduct">
+          <span class="fa fa-trash text-danger"></span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+    <a *ngIf="page" (click)="previous()">
+      <span class="fa fa-fast-backward btn btn-primary border-0"></span>
+    </a>
+    <a *ngIf="page != totalPage - 1" (click)="next()">
+      <span class="fa fa-fast-forward btn btn-primary border-0"></span>
+    </a>
+</div>
+<div *ngIf="homeBusForm" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Đăng kí nhà xe</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="homeBusForm" (ngSubmit)="createProduct()">
+          <div class="form-text mb-4">
+            <label class="form-label" for="id">Biển số xe</label>
+            <input type="text" id="id" class="form-control" formControlName="id" name="name"/>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="name">Tên nhà xe</label>
+            <input type="text" id="name" class="form-control" formControlName="name" name="name"/>
+          </div>
+          <div class="form-text mb-4" formGroupName="typeBus">
+            <label class="form-label" for="category11">Loại xe</label>
+            <select formControlName="id" id="category11" class="form-select" name="typeBus">
+              <option value="" disabled selected>choose category</option>
+              <ng-container *ngFor="let typeBus of typeBusList">
+                <option [ngValue]="typeBus.id">{{typeBus.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="form-text mb-4" formGroupName="goLocations">
+            <label class="form-label" for="category111">Điểm đi</label>
+            <select formControlName="id" id="category111" class="form-select" name="typeBus">
+              <option value="" disabled selected>choose category</option>
+              <ng-container *ngFor="let go of locationList">
+                <option [ngValue]="go.id">{{go.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="form-text mb-4" formGroupName="backLocations">
+            <label class="form-label" for="category112">Điểm đến</label>
+            <select formControlName="id" id="category112" class="form-select" name="typeBus">
+              <option value="" disabled selected>choose category</option>
+              <ng-container *ngFor="let back of locationList">
+                <option [ngValue]="back.id">{{back.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="price">Số điện thoại</label>
+            <input type="text" id="price" class="form-control" formControlName="phone" name="price"/>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="produce11">email</label>
+            <input type="email" id="produce11" class="form-control" formControlName="email" ngModel="produce"/>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="produce2">Giờ đi</label>
+            <input type="time" id="produce2" class="form-control" formControlName="startTime" ngModel="produce"/>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="produce3">Giờ đến</label>
+            <input type="time" id="produce3" class="form-control" formControlName="endTime" ngModel="produce"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light border-0" data-bs-dismiss="modal"><i class="fa fa-cancel text-black"></i></button>
+            <button type="submit" class="btn btn-light border-0" data-bs-dismiss="modal"><i class="fa fa-save text-danger"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="homeBusForm" class="modal fade" id="edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel1">Sửa thông tin nhà xe</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="homeBusForm" (ngSubmit)="updateProduct()">
+          <div class="form-text mb-4">
+            <label class="form-label" for="ids">Số xe</label>
+            <input type="text" id="ids" class="form-control" formControlName="id" name="id"/>
+            <div class="text-danger" *ngIf="homeBusForm.controls.id.hasError('required') && (homeBusForm.controls.id.dirty || homeBusForm.controls.id.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="name32">Tên nhà xe</label>
+            <input type="text" id="name32" class="form-control" formControlName="name" name="name"/>
+            <div class="text-danger" *ngIf="homeBusForm.controls.name.hasError('required') && (homeBusForm.controls.name.dirty || homeBusForm.controls.name.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4" formGroupName="typeBus">
+            <label class="form-label" for="category113">Loại xe</label>
+            <select formControlName="id" id="category113" class="form-select" name="typeBus">
+              <option value="" disabled selected>choose category</option>
+              <ng-container *ngFor="let typeBus of typeBusList">
+                <option [ngValue]="typeBus.id">{{typeBus.name}}</option>
+              </ng-container>
+            </select>
+            <div class="text-danger" *ngIf="homeBusForm.controls.typeBus.hasError('required') && (homeBusForm.controls.typeBus.dirty || homeBusForm.controls.typeBus.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4" formGroupName="goLocations">
+            <label class="form-label" for="category1113">Điểm đi</label>
+            <select formControlName="id" id="category1113" class="form-select" name="typeBus">
+              <option value="" disabled selected>chọn điểm đi</option>
+              <ng-container *ngFor="let go of locationList">
+                <option [ngValue]="go.id">{{go.name}}</option>
+              </ng-container>
+            </select>
+            <div class="text-danger" *ngIf="homeBusForm.controls.goLocations.hasError('required') && (homeBusForm.controls.goLocations.dirty || homeBusForm.controls.goLocation.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4" formGroupName="backLocations">
+            <label class="form-label" for="category1123">Điểm đến</label>
+            <select formControlName="id" id="category1123" class="form-select" name="typeBus">
+              <option value="" disabled selected>chọn điểm đến</option>
+              <ng-container *ngFor="let back of locationList">
+                <option [ngValue]="back.id">{{back.name}}</option>
+              </ng-container>
+            </select>
+            <div class="text-danger" *ngIf="homeBusForm.controls.backLocations.hasError('required') && (homeBusForm.controls.backLocations.dirty || homeBusForm.controls.backLocation.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="price3">Số điện thoại</label>
+            <input type="text" id="price3" class="form-control" formControlName="phone" name="price"/>
+            <div class="text-danger" *ngIf="homeBusForm.controls.phone.hasError('required') && (homeBusForm.controls.phone.dirty || homeBusForm.controls.phone.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="produce1134">email</label>
+            <input type="email" id="produce1134" class="form-control" formControlName="email"/>
+            <div class="text-danger" *ngIf="homeBusForm.controls.email.hasError('required') && (homeBusForm.controls.email.dirty || homeBusForm.controls.email.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="produce22">Giờ đi</label>
+            <input type="time" id="produce22" class="form-control" formControlName="startTime"/>
+            <div class="text-danger" *ngIf="homeBusForm.controls.startTime.hasError('required') && (homeBusForm.controls.startTime.dirty || homeBusForm.controls.startTime.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="form-text mb-4">
+            <label class="form-label" for="produce32">Giờ đến</label>
+            <input type="time" id="produce32" class="form-control" formControlName="endTime"/>
+            <div class="text-danger" *ngIf="homeBusForm.controls.endTime.hasError('required') && (homeBusForm.controls.endTime.dirty || homeBusForm.controls.endTime.touched)">
+              * không được để trống trường này
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light border-0" data-bs-dismiss="modal"><i class="fa fa-cancel text-black"></i></button>
+            <button type="submit" class="btn btn-light border-0" data-bs-dismiss="modal"><i class="fa fa-save text-danger"></i></button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="deleteBus" class="modal fade" id="deleteProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel2">Xóa Nhà Xe</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="text-danger">Lưu Ý dữ liệu không thể lấy lại!</p><span class="fa fa-warning text-warning fa-4x text-center"></span>
+        <p>Tên nhà xe: {{deleteBus.name}}</p>
+        <p>Loại xe: {{deleteBus.typeBus.name}}</p>
+        <p>Số điện thoại: {{deleteBus.phone}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fa fa-cancel text-black"></i>
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="productDelete()" data-bs-dismiss="modal">
+          <i class="fa fa-trash text-danger"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

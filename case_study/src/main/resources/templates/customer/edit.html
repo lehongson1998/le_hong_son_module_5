@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit customer</title>
+    <th:block th:replace="~{/layout/home :: cssScript}"></th:block>
+    <style>
+        body {
+            background-image: url("https://img.meta.com.vn/Data/image/2021/09/30/background-la-gi-anh-background-dep-9.png");
+            background-position: bottom right;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="~{/layout/header_footer::header}"></nav>
+<div th:replace="~{/layout/home::carousel}"></div>
+<div class="container w-50 mt-4 p-2 mb-4" style="border: 1px solid grey; border-radius: 15px">
+    <h3 align="center" class="text-info">SỬA THÔNG TIN KHÁCH HÀNG</h3>
+    <form class="row g-3" action="/customer/edit" method="post" th:object="${customerDto}">
+        <div class="col-md-12">
+            <input hidden type="text" readonly th:field="*{id}" class="form-control" id="cId">
+            <p th:errors="*{id}" class="text-danger"></p>
+        </div>
+        <div class="col-md-12">
+            <label for="name" class="form-label">Họ tên</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name">
+            <p th:errors="*{name}" class="text-danger"></p>
+        </div>
+        <div class="col-md-12">
+            <label for="birthday" class="form-label">ngày sinh</label>
+            <input type="date" th:field="*{dateOfBirth}"class="form-control" id="birthday">
+            <p th:errors="*{dateOfBirth}" class="text-danger"></p>
+        </div>
+        <div class="col-md-12">
+            <label  class="form-label me-4">Giới tính</label>
+            <input type="radio" name="gender" value="true" th:field="*{gender}"><span>Nam</span>
+            <input type="radio" name="gender" value="false" th:field="*{gender}"><span>Nữ</span>
+            <p th:errors="*{gender}" class="text-danger"></p>
+        </div>
+        <div class="col-md-12">
+            <label for="id_card" class="form-label">Số CMND</label>
+            <input type="text" class="form-control" id="id_card" th:field="*{idCard}">
+            <p th:errors="*{idCard}" class="text-danger"></p>
+        </div>
+        <div class="col-md-12">
+            <label for="phone" class="form-label">Số điện thoại</label>
+            <input type="text" class="form-control" id="phone" th:field="*{phoneNumber}">
+            <p th:errors="*{phoneNumber}" class="text-danger"></p>
+        </div>
+        <div class="col-md-12 " id="s1" >
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" th:field="*{email}">
+            <p th:errors="*{email}" class="text-danger"></p>
+        </div>
+        <div class="input-group mb-3">
+            <label for="email" class="form-label">Loại khách hàng</label>
+            <select name="categoryName" th:field="*{typeCustomerDto.id}">
+                <option th:each="type : ${customerType}"
+                        th:value="${type.typeCustomerId}"
+                        th:text="${type.typeNameCustomer}">
+                </option>
+            </select>
+            <p th:errors="*{typeCustomerDto}" class="text-danger"></p>
+        </div>
+
+
+        <div class="col-md-12 " id="s2" >
+            <label for="address" class="form-label">Địa chỉ</label>
+            <input type="text" class="form-control" id="address" th:field="*{address}">
+            <p th:errors="*{address}" class="text-danger"></p>
+        </div>
+
+        <div class="col-12 ">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </form>
+</div>
+<footer th:replace="/layout/header_footer::footer"></footer>
+</body>
+</html>

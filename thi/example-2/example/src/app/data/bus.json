@@ -1,0 +1,91 @@
+{
+  "bus": [
+    {
+      "id": 1,
+      "typeBus": {
+        "id": 1,
+        "name": "Giường nằm"
+      },
+      "name": "Mạnh Hùng 4",
+      "goLocation": {
+        "id": 2,
+        "name": "Quảng Trị"
+      },
+      "backLocation": {
+        "id": 2
+      },
+      "phone": "0935845632",
+      "email": "mailinh@gmail.com",
+      "startTime": "13:20",
+      "endTime": "15:00"
+    },
+    {
+      "name": "zzzzzzzz",
+      "typeBus": {
+        "id": 2,
+        "name": "Ghế ngồi"
+      },
+      "goLocation": {
+        "id": 1
+      },
+      "backLocation": {
+        "id": 3
+      },
+      "phone": "4000",
+      "email": "lhongson2909@gmail.com",
+      "startTime": "2022-10-05T12:08",
+      "endTime": "2022-10-05T12:10",
+      "id": 2
+    },
+    {
+      "name": "Hong son Le",
+      "typeBus": {
+        "id": 1,
+        "name": "Giường nằm"
+      },
+      "goLocation": {
+        "id": 2
+      },
+      "backLocation": {
+        "id": 2
+      },
+      "phone": "1100",
+      "email": "lhongson2909@gmail.com",
+      "startTime": "2022-10-06T09:03",
+      "endTime": "2022-10-06T09:03",
+      "id": 3
+    }
+  ],
+  "typeBus": [
+    {
+      "id": 1,
+      "name": "Giường nằm"
+    },
+    {
+      "id": 2,
+      "name": "Ghế ngồi"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Đà nẵng"
+    },
+    {
+      "id": 2,
+      "name": "Quảng Trị"
+    },
+    {
+      "id": 3,
+      "name": "Huế"
+    },
+    {
+      "id": 4,
+      "name": "Hà nội"
+    },
+    {
+      "id": 5,
+      "name": "Thanh hóa"
+    }
+  ]
+}

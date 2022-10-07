@@ -1,0 +1,5 @@
+tbody tr:hover{
+  background-color: azure;
+  font-size: 18px;
+  display: compact;
+}

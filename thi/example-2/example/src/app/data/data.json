@@ -1,0 +1,98 @@
+{
+  "products": [
+    {
+      "id": 2,
+      "name": "iphone 18",
+      "price": 1200,
+      "produce": "Apple 1",
+      "category": {
+        "id": 2,
+        "name": "Điện thoại"
+      }
+    },
+    {
+      "id": 15,
+      "name": "iphone 22",
+      "price": 1200,
+      "produce": "Apple",
+      "category": {
+        "id": 2,
+        "name": "Điện thoại"
+      }
+    },
+    {
+      "name": null,
+      "price": null,
+      "produce": "ơaDSFGGFHJ",
+      "category": {
+        "id": 2,
+        "name": "Điện thoại"
+      },
+      "id": 18
+    },
+    {
+      "name": "galaxy s22 ultra",
+      "price": "4000",
+      "produce": "Samsung",
+      "category": {
+        "id": 2,
+        "name": "Điện thoại"
+      },
+      "id": 20
+    },
+    {
+      "name": "Room Twin 01",
+      "price": "1800",
+      "produce": "Asus",
+      "category": {
+        "id": 3,
+        "name": "Camera"
+      },
+      "id": 21
+    },
+    {
+      "name": "Room Twin 01",
+      "price": "1400",
+      "produce": "Lenovo",
+      "category": {
+        "id": 3,
+        "name": "Camera"
+      },
+      "id": 24
+    },
+    {
+      "name": "galaxy s23 ultra",
+      "price": "1800",
+      "produce": "Samsung",
+      "category": {
+        "id": 1,
+        "name": "Máy tính"
+      },
+      "id": 25
+    },
+    {
+      "name": "Lê Hồng Sơn",
+      "price": "1800",
+      "produce": "Asus",
+      "category": {
+        "id": 1,
+        "name": "Máy tính"
+      },
+      "id": 26
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "name": "Máy tính"
+    },
+    {
+      "id": 2,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 3,
+      "name": "Camera"
+    }
+  ]
+}

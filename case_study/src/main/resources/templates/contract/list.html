@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>contract</title>
+    <th:block th:replace="~{/layout/home :: cssScript}"></th:block>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+        body {
+            background-image: url("https://img.meta.com.vn/Data/image/2021/09/30/background-la-gi-anh-background-dep-9.png");
+            background-position: bottom right;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<nav th:replace="~{/layout/header_footer::header}"></nav>
+<div th:replace="~{/layout/home::carousel}"></div>
+<div class="container">
+    <input id="message" hidden th:value="${msg}">
+    <button style="position: fixed;right: 0" type="button" class="btn btn-success mt-1" data-bs-toggle="modal"
+            data-bs-target="#addContact" onclick="">
+        THÊM MỚI HỢP ĐỒNG
+    </button>
+    <h2 CLASS="text-center cac" style="font-family: 'Bell MT'">DANH SÁCH HỢP ĐỒNG</h2>
+    <form class="d-flex m-5">
+        <input class="form-control me-2" type="search" placeholder="tìm theo tên dịch vụ" aria-label="Search"
+               name="facilityName" th:value="${keyName}">
+        <input class="form-control me-2" type="search" placeholder="tìm theo tên khách hàng" aria-label="Search"
+               name="customerName" th:value="${keyCus}">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <div class="row main mt-2 ">
+        <table class="table table-striped">
+            <tr style="font-family: 'Bell MT'" class="table-success">
+                <th>#</th>
+                <th>DỊCH VỤ</th>
+                <th>KHÁCH HÀNG</th>
+                <th>NGÀY BẮT ĐẦU</th>
+                <th>NGÀY KẾT THÚC</th>
+                <th>TIỀN ĐẶT CỌC</th>
+                <th>TỔNG TIỀN</th>
+                <th class="text-center">DỊCH VỤ ĐI KÈM</th>
+            </tr>
+            <tr th:each="contract, status: ${contractPage}">
+                <td th:text="${status.count}"></td>
+                <td th:text="${contract.facility.name}"></td>
+                <td th:text="${contract.customer.name}"></td>
+                <td th:text="${contract.startDay}"></td>
+                <td th:text="${contract.endDay}"></td>
+                <td th:text="${contract.deposit}"></td>
+                <th:block th:each="t:${total}">
+                    <th:block th:if="${t.getKey() == contract.id}">
+                        <td th:text="${t.getValue() + contract.deposit + contract.facility.cost}"></td>
+                    </th:block>
+                </th:block>
+
+                <td class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
+                            data-bs-target="#addContactDetail" th:onclick="|createContractDetail(${contract.id})|">
+                        +
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#attachFacility" th:onclick="|sendId(${contract.id})|">
+                        Danh sách dịch vụ đi kèm
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <a th:href="@{/contract/list(page=${contractPage.number - 1}, facilityName = ${keyName}, customerName = ${keyCus})}"
+                   th:if="${contractPage.hasPrevious()}">
+                    <span class="fa fa-angles-left"></span>
+                </a>
+                <span th:text="${contractPage.number + 1}"></span> / <span th:text="${contractPage.totalPages}"></span>
+                <a th:href="@{/contract/list(page=${contractPage.number + 1}, facilityName = ${keyName},customerName = ${keyCus} )}"
+                   th:if="${contractPage.hasNext()}">
+                    <span class="fa fa-angles-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">TẠO HỢP ĐỒNG</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div class="container  mt-2 p-2 mb-2" style="border: 1px solid grey; border-radius: 15px">
+                        <form class="row" action="/contract/createContract" method="post" th:object="${contractDto}">
+                            <div class="col-md-12">
+                                <label for="startday" class="form-label">Ngày bắt đầu </label>
+                                <input type="date" class="form-control" id="startday" th:field="*{startDay}">
+                                <p th:errors="*{startDay}" class="text-danger"></p>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="endday" class="form-label">Ngày kết thúc </label>
+                                <input type="date" class="form-control" id="endday" th:field="*{endDay}">
+                                <p th:errors="*{startDay}" class="text-danger"></p>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="deposit" class="form-label">Tiền đặt cọc</label>
+                                <input type="number" class="form-control" id="deposit" th:field="*{deposit}">
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Khách hàng</label>
+                                <select th:field="*{customer.id}" class="form-select">
+                                    <option value="None">Chọn khách hàng</option>
+                                    <option th:each="cus:${customer}"
+                                            th:value="${cus.id}"
+                                            th:text="${cus.name}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Nhân viên</label>
+                                <select th:field="*{employee.id}" class="form-select">
+                                    <option value="None">Chọn nhân viên</option>
+                                    <option th:each="emp:${employee}"
+                                            th:value="${emp.id}"
+                                            th:text="${emp.name}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Dịch vụ</label>
+                                <select th:field="*{facility.id}" class="form-select">
+                                    <option value="None">Chọn dịch vụ</option>
+                                    <option th:each="fac:${facility}"
+                                            th:value="${fac.id}"
+                                            th:text="${fac.name}"
+                                            id="total">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="total" class="form-label">Tổng tiền</label>
+                                <input type="text" readonly class="form-control" id="total1" name="total">
+                            </div>
+                            <div class="col-12  mt-2 d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary me-3" data-bs-dismiss="modal">Hủy bỏ
+                                </button>
+                                <button type="submit" class="btn btn-warning">Tạo hợp đồng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="attachFacility" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditLable">DANH SÁCH DỊCH VỤ MIỄN PHÍ ĐI KÈM</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr style="font-family: 'Bell MT'">
+                                <th>Tên dịch vụ đi kèm</th>
+                                <th>Đơn vị</th>
+                                <th>Giá tiền</th>
+                                <th>Số lượng</th>
+                            </tr>
+                            </thead>
+                            <tbody id="divContract"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addContactDetail" tabindex="-1" aria-labelledby="modalEditLable" aria-hidden="true">
+        <form action="/contract/createContractDetail" method="post" th:object="${contractDetailDto}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">THÊM DỊCH VỤ ĐI KÈM</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body container-fluid">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Tên dịch vụ đi kèm</th>
+                                <th>Đơn vị</th>
+                                <th>Giá tiền</th>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4"><input id="contractId" type="text" th:field="*{contract}"></td>
+                            </tr>
+                            <th:block th:each="attach: ${attachFacility}">
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="attach"
+                                               th:value="${attach.id}"
+                                               th:text="${attach.name}"
+                                               th:field="*{attachFacility}">
+                                    </td>
+                                    <td th:text="${attach.unit}"></td>
+                                    <td th:text="${attach.cost}"></td>
+                                </tr>
+                            </th:block>
+                            <tr>
+                                <td><label>Số lượng</label><input type="number" th:field="*{quantity}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="modalAlert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="/customer?action=deleteCustomer" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thông báo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body container-fluid">
+                        <p id="modalAlertMes"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="/layout/header_footer::footer"></footer>
+<script>
+    function displayAttachFacility() {
+        document.getElementById("tableFacilityContract").style.display = 'block'
+        document.getElementById("buttonHide").style.display = 'block'
+    }
+
+    function hideAttachFacility() {
+        document.getElementById("tableFacilityContract").style.display = 'none'
+        document.getElementById("buttonHide").style.display = 'none'
+    }
+
+    function createContractDetail(id) {
+        document.getElementById("contractId").value = id;
+    }
+</script>
+<script>
+    $(".cac").click(function () {
+        alert("danh sach hop dong");
+    });
+</script>
+<script>
+    window.onload = function () {
+        var message = document.getElementById("message").value;
+        document.getElementById("modalAlertMes").innerText = message;
+        if (message != "" && message != null) {
+            $(document).ready(function () {
+                    $('#modalAlert').modal("show")
+                }
+            )
+        }
+    }
+</script>
+<script>
+    function sendId(id) {
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/contractRest/list/" + id,
+                success: function (resultSuccess) {
+                    let listContractDt = resultSuccess;
+                    console.log(listContractDt)
+                    let strContract = "";
+                    for (let i = 0; i < listContractDt.length; i++) {
+                        strContract += `<tr>
+                                     <td>${listContractDt[i].attachFacility.name}</td>
+                                     <td>${listContractDt[i].attachFacility.unit}</td>
+                                     <td>${listContractDt[i].attachFacility.cost}</td>
+                                     <td>${listContractDt[i].quantity}</td>
+                                </tr>`;
+                    }
+                    setInterval('location.reload()', 3000);
+                    $("#divContract").html(strContract);
+                },
+                error: function (resultError) {
+                    alert('error');
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
